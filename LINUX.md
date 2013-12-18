@@ -1,11 +1,12 @@
 Disable Un-auto-complete
-========
+====
 
 To disable the weird un-auto-complete in Ubuntu, comment out the lines about bash completion in ~/.bashrc
 
 
 Password-less sudo
-========
+====
+
 For password-less sudo, change /etc/sudoers:
 
     %sudo ALL=(ALL:ALL) NOPASSWD: ALL 
@@ -15,7 +16,7 @@ To use other editors (not nano) for things like visudo:
     sudo update-alternatives --config editor 
 
 SSH
-========
+====
 
 Make a proxy to another server:
 
