@@ -3,6 +3,12 @@ Disable Un-auto-complete
 
 To disable the weird un-auto-complete in Ubuntu, comment out the lines about bash completion in ~/.bashrc
 
+Excluding Lines of Output
+====
+
+Use awk to omit the first N rows. For example:
+
+    ls -l | awk '{ if (NR > 1) print }'
 
 Password-less sudo
 ====
