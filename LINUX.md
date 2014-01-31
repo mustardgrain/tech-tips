@@ -3,6 +3,17 @@ Disable Un-auto-complete
 
 To disable the weird un-auto-complete in Ubuntu, comment out the lines about bash completion in ~/.bashrc
 
+Loops in Bash
+====
+
+Use for combined with seq to implement a C-style for loop:
+
+    $ for i in `seq 0 9`; do echo $i; done
+
+And you can do fun stuff like this:
+
+    $ for i in `seq -f "%02g" 99 -1 0`; do echo "$i bottles of beer on the wall"; done
+
 Excluding Lines of Output
 ====
 
