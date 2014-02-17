@@ -1,8 +1,8 @@
-whathappened
+whatchanged
 ====
 
 To see the last commit message and diff:
 
 ```
-git whathappened -p -n 1
+git whatchanged -p -n 1
 ```
