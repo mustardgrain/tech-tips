@@ -6,7 +6,7 @@ To determine the installed version of a package installed via `apt-get`, run `ap
 Disable Un-auto-complete
 ====
 
-To disable the weird un-auto-complete in Ubuntu, comment out the lines about bash completion in ~/.bashrc
+To disable the weird un-auto-complete in Ubuntu, comment out the lines about bash completion in `~/.bashrc`.
 
 Loops in Bash
 ====
@@ -29,7 +29,7 @@ Use awk to omit the first N rows. For example:
 Password-less sudo
 ====
 
-For password-less sudo, change /etc/sudoers:
+For password-less sudo, change `/etc/sudoers`:
 
     %sudo ALL=(ALL:ALL) NOPASSWD: ALL 
 
