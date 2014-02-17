@@ -1,3 +1,8 @@
+Determine Version of Installed Package
+====
+
+To determine the installed version of a package installed via `apt-get`, run `apt-cache policy <package name>`.
+
 Disable Un-auto-complete
 ====
 
