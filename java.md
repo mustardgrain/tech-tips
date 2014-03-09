@@ -5,15 +5,24 @@ Here's a gentle introduction:
 
 http://prefetch.net/blog/index.php/2007/10/27/summarizing-java-heap-utilization-with-jmap/
 
-Getting errors like this?
+When you do this:
 
-    kirk@animal ~ $ jmap -heap `pgrep java`
-    Attaching to process ID 6377, please wait...
-    Error attaching to process: sun.jvm.hotspot.debugger.DebuggerException: Can't attach to the process
+```bash
+jmap -heap `pgrep java`
+```
 
-Then you need to do this (from this bug report):
+Do you get errors like this:
 
-    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+```
+Attaching to process ID 6377, please wait...
+Error attaching to process: sun.jvm.hotspot.debugger.DebuggerException: Can't attach to the process
+```
+
+Then do this:
+
+```bash
+echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+```
 
 JMX
 ====
