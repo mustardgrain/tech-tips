@@ -1,3 +1,10 @@
+Generate Eclipse Project
+========================
+
+```bash
+mvn eclipse:clean eclipse:eclipse -DdownloadSources=true $*
+```
+
 Maven Plugin Help
 =================
 
