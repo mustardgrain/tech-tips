@@ -28,3 +28,12 @@ Assuming HDFS is stopped, run this:
 ```bash
 hadoop namenode -format
 ```
+
+Killing a Single Hadoop Job
+---------------------------
+
+Here's a little lazy script that I use to delete a job:
+
+```bash
+hadoop job -list | grep "job_" | awk '{ print $1 }' | xargs hadoop job -kill
+```
