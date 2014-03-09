@@ -76,7 +76,9 @@ Creating Tables from Queries
 
 It's possible to create a table using the derived schema from an arbitrarily complex query. Here's a quick example:
 
-    CREATE TABLE dst_tbl SELECT * FROM src_tbl;
+```sql
+CREATE TABLE dst_tbl SELECT * FROM src_tbl;
+```
 
 There's a bit more information here:
 
