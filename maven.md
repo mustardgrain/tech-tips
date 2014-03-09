@@ -1,12 +1,14 @@
 Generate Eclipse Project
-========================
+------------------------
+
+To generate an Eclipse project using the Maven project metadata, run this:
 
 ```bash
 mvn eclipse:clean eclipse:eclipse -DdownloadSources=true $*
 ```
 
 Maven Plugin Help
-=================
+-----------------
 
 To see the help (configuration parameters, etc.) for a given plugin, use this command:
 
