@@ -11,7 +11,7 @@ To disable the weird un-auto-complete in Ubuntu, comment out the lines about bas
 Password-less sudo
 ====
 
-For password-less sudo, change `/etc/sudoers`:
+For password-less `sudo`, change `/etc/sudoers`:
 
 ```
 %sudo ALL=(ALL:ALL) NOPASSWD: ALL 
@@ -20,7 +20,7 @@ For password-less sudo, change `/etc/sudoers`:
 Using a Different Editor
 ========================
 
-To use other editors (not nano) for things like visudo:
+To use other editors (not `nano`) for things like `visudo`:
 
 ```bash
 sudo update-alternatives --config editor 
