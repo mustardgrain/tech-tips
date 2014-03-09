@@ -8,33 +8,41 @@ Dumping a Table
 
 Dumping a table to a MySQL-formatted SQL file:
 
-    mysqldump -u root -p my_database my_table > my_table.sql
+```bash
+mysqldump -u root -p my_database my_table > my_table.sql
+```
 
 Dumping a table to a CSV file:
 
-    SELECT
-        *
-    FROM
-        mytable
-    INTO OUTFILE '/tmp/mytable.csv'
-    FIELDS TERMINATED BY ','
-    ENCLOSED BY '"'
-    LINES TERMINATED BY '\n';
+```sql
+SELECT
+    *
+FROM
+    mytable
+INTO OUTFILE '/tmp/mytable.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+```
 
 Creating New Users
 ====
 
-    DROP USER demo@'localhost';
-    DROP USER demo@'%';
-    CREATE USER 'demo'@'localhost' IDENTIFIED BY 'demo';
-    CREATE USER 'demo'@'%' IDENTIFIED BY 'demo';
-    GRANT ALL PRIVILEGES ON *.* TO 'demo'@'localhost' WITH GRANT OPTION;
-    GRANT ALL PRIVILEGES ON *.* TO 'demo'@'%' WITH GRANT OPTION;
+```sql
+DROP USER demo@'localhost';
+DROP USER demo@'%';
+CREATE USER 'demo'@'localhost' IDENTIFIED BY 'demo';
+CREATE USER 'demo'@'%' IDENTIFIED BY 'demo';
+GRANT ALL PRIVILEGES ON *.* TO 'demo'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'demo'@'%' WITH GRANT OPTION;
+```
 
 Viewing Users
 ====
 
-    SELECT user, host, password FROM mysql.user;
+```sql
+SELECT user, host, password FROM mysql.user;
+```
 
 Pretty-printing SQL
 ====
