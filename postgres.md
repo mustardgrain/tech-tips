@@ -1,5 +1,5 @@
 Initial Setup
-=============
+-------------
 
 The first step is installing PostgreSQL:
 
@@ -10,7 +10,7 @@ sudo apt-get install -y postgresql-9.1
 ```
 
 Connectivity
-============
+------------
 
 You'll probably want to configure Postgres to be available to outside hosts:
 
