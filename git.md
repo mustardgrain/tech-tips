@@ -1,8 +1,14 @@
-whatchanged
-====
+Commits
+-------
 
 To see the last commit message and diff:
 
-```
+```bash
 git whatchanged -p -n 1
+```
+
+To determine the number of commits your branch is ahead of master:
+
+```bash
+git log master..HEAD --pretty=oneline | wc -l
 ```
