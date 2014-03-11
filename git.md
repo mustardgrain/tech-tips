@@ -12,3 +12,8 @@ To determine the number of commits your branch is ahead of master:
 ```bash
 git log master..HEAD --pretty=oneline | wc -l
 ```
+
+Rebasing
+--------
+
+xxx
