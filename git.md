@@ -18,6 +18,9 @@ Rebasing
 
 To rebase against master do the following:
 
-Make sure you've pulled to master.
+First make sure you've pulled to master.
+
+```bash
 git checkout foo
 git rebase origin/master
+```
