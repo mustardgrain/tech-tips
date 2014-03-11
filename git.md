@@ -16,11 +16,8 @@ git log master..HEAD --pretty=oneline | wc -l
 Rebasing
 --------
 
-To rebase against master do the following:
-
-First make sure you've pulled to master.
+To rebase against master, first update master, then `git checkout` to your branch, then do the following:
 
 ```bash
-git checkout foo
 git rebase origin/master
 ```
