@@ -22,6 +22,9 @@ To rebase against master, first update master, then `git checkout` to your branc
 git rebase origin/master
 ```
 
+Branching
+---------
+
 To prune remote branches run:
 
 ```bash
