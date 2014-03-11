@@ -16,4 +16,8 @@ git log master..HEAD --pretty=oneline | wc -l
 Rebasing
 --------
 
-xxx
+To rebase against master do the following:
+
+Make sure you've pulled to master.
+git checkout foo
+git rebase origin/master
