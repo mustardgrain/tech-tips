@@ -24,4 +24,7 @@ Performance
 -----------
 
 To enable output of time it took to run a query in psql run:
-```\timing```
+
+```
+\timing
+```
