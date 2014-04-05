@@ -91,3 +91,12 @@ CREATE TABLE dst_tbl SELECT * FROM src_tbl;
 There's a bit more information here:
 
 http://answers.oreilly.com/topic/158-how-to-save-query-results-in-a-mysql-table/
+
+Disable Client-side Query Caching
+====
+
+In the `mysql` command line client:
+
+```sql
+SET SESSION query_cache_type = OFF;
+```
