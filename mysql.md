@@ -101,6 +101,17 @@ In the `mysql` command line client:
 SET SESSION query_cache_type = OFF;
 ```
 
+Apparently you can add `SQL_NO_CACHE` to your query to cause the server to not cache the query results:
+
+```sql
+SELECT SQL_NO_CACHE
+    count(clicks)
+FROM
+    users
+WHERE  
+    name like 'Kirk%';
+```
+
 Determine Disk Usage
 --------------------
 
