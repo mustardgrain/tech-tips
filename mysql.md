@@ -125,3 +125,12 @@ FROM
 WHERE
     table_schema = 'xxxx';
 ```
+
+Viewing a Table Definition
+--------------------------
+
+Show the `CREATE TABLE` statement used to create table foo:
+
+```sql
+SHOW CREATE TABLE foo;
+```
