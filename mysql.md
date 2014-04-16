@@ -92,10 +92,10 @@ There's a bit more information here:
 
 http://answers.oreilly.com/topic/158-how-to-save-query-results-in-a-mysql-table/
 
-Disable Client-side Query Caching
----------------------------------
+Query Caching
+-------------
 
-In the `mysql` command line client:
+You can disable the client-side query results cache in the `mysql` command line client thusly:
 
 ```sql
 SET SESSION query_cache_type = OFF;
