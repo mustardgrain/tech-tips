@@ -14,7 +14,7 @@ mysqldump -u root -p my_database my_table > my_table.sql
 
 Dumping a table to a CSV file:
 
-```sql
+```mysql
 SELECT
     *
 FROM
@@ -28,7 +28,7 @@ LINES TERMINATED BY '\n';
 Creating New Users
 ------------------
 
-```sql
+```mysql
 DROP USER demo@'localhost';
 DROP USER demo@'%';
 CREATE USER 'demo'@'localhost' IDENTIFIED BY 'demo';
@@ -40,7 +40,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'demo'@'%' WITH GRANT OPTION;
 Viewing Users
 -------------
 
-```sql
+```mysql
 SELECT user, host, password FROM mysql.user;
 ```
 
@@ -54,7 +54,7 @@ http://www.dpriver.com/pp/sqlformat.htm
 STRAIGHT_JOIN
 -------------
 
-``STRAIGHT_JOIN`` is an optimization for joins and is described here:
+`STRAIGHT_JOIN` is an optimization for joins and is described here:
 
 http://dev.mysql.com/doc/refman/5.0/en/join.html
 
@@ -73,18 +73,22 @@ Query Process Management
 
 To see all the queries in process:
 
-    show processlist
+```mysql
+show [full] processlist
+```
 
 And to kill one:
 
-    kill query <query ID>
+```mysql
+kill query <query ID>
+```
 
 Creating Tables from Queries
 ----------------------------
 
 It's possible to create a table using the derived schema from an arbitrarily complex query. Here's a quick example:
 
-```sql
+```mysql
 CREATE TABLE dst_tbl SELECT * FROM src_tbl;
 ```
 
@@ -97,13 +101,13 @@ Query Caching
 
 You can disable the client-side query results cache in the `mysql` command line client thusly:
 
-```sql
+```mysql
 SET SESSION query_cache_type = OFF;
 ```
 
 Apparently you can add `SQL_NO_CACHE` to your query to cause the server to not cache the query results:
 
-```sql
+```mysql
 SELECT SQL_NO_CACHE
     count(clicks)
 FROM
@@ -117,7 +121,7 @@ Determine Disk Usage
 
 In the `mysql` command line client:
 
-```sql
+```mysql
 SELECT
     (data_length+index_length) / power(1024, 3) AS tablesize_gb
 FROM
@@ -131,6 +135,6 @@ Viewing a Table Definition
 
 Show the `CREATE TABLE` statement used to create table foo:
 
-```sql
+```mysql
 SHOW CREATE TABLE foo;
 ```
