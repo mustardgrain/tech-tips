@@ -133,8 +133,17 @@ WHERE
 Viewing a Table Definition
 --------------------------
 
-Show the `CREATE TABLE` statement used to create table foo:
+Show the `CREATE TABLE` statement used to create table `foo`:
 
 ```mysql
 SHOW CREATE TABLE foo;
+```
+
+Table Status
+------------
+
+The `SHOW TABLE STATUS` statement can be used to get information (like approximate row count) for table `foo`:
+
+```mysql
+SHOW TABLE STATUS LIKE 'foo';
 ```
