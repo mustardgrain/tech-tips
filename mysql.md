@@ -3,8 +3,8 @@ Logging In Remotely
 
 To give users access outside of localhost, first create a user with access to '%' (see below). You may also need to comment out the line in /etc/mysql/my.cnf to comment out the bind-address option.
 
-Dumping a Table
----------------
+Importing/Exporting
+-------------------
 
 Dumping a table to a MySQL-formatted SQL file:
 
@@ -24,6 +24,14 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 ```
+
+Importing from a CSV file:
+
+```mysql
+LOAD DATA INFILE '/path/to/foo.csv' INTO TABLE `foo` FIELDS  TERMINATED BY ',' IGNORE 0 LINES;
+```
+
+When using `LOAD DATA LOCAL INFILE`, you may need to use the `--local-infile=1` flag on the `mysql` client. Otherwise you get `ERROR 1148 (42000): The used command is not allowed with this MySQL version`.
 
 Creating New Users
 ------------------
