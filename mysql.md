@@ -138,6 +138,22 @@ WHERE
     table_schema = 'xxxx';
 ```
 
+To get a breakdown of individual indexes:
+
+```mysql
+SELECT
+    index_name,
+    (sum(stat_value) * @@innodb_page_size) / power(1024, 3) AS index_gb
+FROM
+    mysql.innodb_index_stats
+WHERE
+    table_name = 'xxxx'
+    AND database_name = 'yyyy'
+    AND stat_description = 'Number of pages in the index'
+GROUP BY
+    index_name;
+```
+
 Viewing a Table Definition
 --------------------------
 
