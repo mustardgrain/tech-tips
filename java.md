@@ -1,5 +1,5 @@
 jmap
-====
+----
 
 Here's a gentle introduction:
 
@@ -25,7 +25,7 @@ echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 ```
 
 JMX
-====
+---
 
 Getting JMX to work on a firewalled system is crazy. System properties for an unprotected system:
 
@@ -41,5 +41,16 @@ For EC2 we can set java.rmi.server.hostname to:
 
 The server will assign a secondary, ephemeral port that the client also needs to have access. I'm not sure how to get this port off of a system without netstat and guesswork.
 
-The jmxterm tool is great for probing server applications via JMX from the command line.
+The `jmxterm` tool is great for probing server applications via JMX from the command line.
 
+Installing the Oracle JDK Under Ubuntu
+--------------------------------------
+
+To install the Oracle JDK under Ubuntu, do the following:
+
+```bash
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+sudo update-alternatives --config java
+```
