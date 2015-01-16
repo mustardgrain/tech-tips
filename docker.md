@@ -1,5 +1,5 @@
-Cheat Sheet
------------
+Will Sargent's Docker Cheat Sheet
+---------------------------------
 
 https://github.com/wsargent/docker-cheat-sheet
 
@@ -35,5 +35,3 @@ Connecting to a Running Container
 ```bash
 docker exec -it <container ID> bash
 ```
-
-From: http://stackoverflow.com/questions/20932357/docker-enter-running-container-with-new-tty
