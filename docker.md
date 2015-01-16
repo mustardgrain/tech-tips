@@ -1,7 +1,7 @@
 Connecting to a running container
 ---------------------------------
 
-```
+```bash
 docker exec -it <container ID> bash
 ```
 
