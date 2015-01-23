@@ -1,7 +1,7 @@
 Loops
 =====
 
-Use `for` combined with `seq` to implement a C-style for loop:
+Use `for` combined with `seq` to implement a C-style `for` loop:
 
 ```bash
 for i in `seq 0 9`; do echo $i; done
