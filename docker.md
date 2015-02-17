@@ -35,3 +35,10 @@ Connecting to a Running Container
 ```bash
 docker exec -it <container ID> bash
 ```
+
+`tail` Logs of a Running Container
+----------------------------------
+
+```bash
+docker logs -f <container ID>
+```
