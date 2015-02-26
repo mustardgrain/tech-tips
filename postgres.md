@@ -37,3 +37,10 @@ To disable pagination of query results run:
 ```
 \pset pager off
 ```
+
+Change Password
+---------------
+
+```sql
+ALTER USER yourusername WITH PASSWORD 'yournewpassword';
+```
