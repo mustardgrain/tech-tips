@@ -1,4 +1,4 @@
-https://gist.github.com/JoshuaEstes/2627607#bash
+https://gist.github.com/JoshuaEstes/2627607#file-bash-cheat-sheet-md
 
 Loops
 =====
