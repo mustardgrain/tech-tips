@@ -3,6 +3,15 @@ Cheat Sheets
 
 https://gist.github.com/JoshuaEstes/2627607#file-bash-cheat-sheet-md
 
+Redirect stderr to stdout
+=========================
+
+Use the command as follows:
+
+```bash
+some-command 2>&1
+```
+
 Loops
 =====
 
