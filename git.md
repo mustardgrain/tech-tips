@@ -1,3 +1,5 @@
+https://gist.github.com/JoshuaEstes/2627607#file-git-cheat-sheat-md
+
 Commits
 -------
 
