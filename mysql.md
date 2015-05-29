@@ -39,8 +39,8 @@ Creating New Users
 ```mysql
 DROP USER demo@'localhost';
 DROP USER demo@'%';
-CREATE USER 'demo'@'localhost' IDENTIFIED BY 'demo';
-CREATE USER 'demo'@'%' IDENTIFIED BY 'demo';
+CREATE USER 'demo'@'localhost' IDENTIFIED BY 'secret';
+CREATE USER 'demo'@'%' IDENTIFIED BY 'secret';
 GRANT ALL PRIVILEGES ON *.* TO 'demo'@'localhost' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON *.* TO 'demo'@'%' WITH GRANT OPTION;
 ```
