@@ -30,3 +30,11 @@ Or, if you don't want/need launchctl, you can just run:
     mongod --config /usr/local/etc/mongod.conf
 ```
 
+Comparing Two Fields in a Document
+----------------------------------
+
+If the _where_ clause is the comparison, you can use a nested JavaScript _comparator_ function:
+
+```
+db.fr_sessions.find("this.created > this.end_date")
+```
