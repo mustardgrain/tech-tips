@@ -91,6 +91,18 @@ And to kill one:
 kill query <query ID>
 ```
 
+Finding Tables Containing Columns
+---------------------------------
+
+To see a list of all the tables with columns whose name include `foo`:
+
+```mysql
+SELECT DISTINCT table_name
+FROM information_schema.columns
+WHERE lower(column_name) LIKE '%foo%'
+ORDER BY table_name;
+```
+
 Creating Tables from Queries
 ----------------------------
 
