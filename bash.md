@@ -12,6 +12,12 @@ Use the command as follows:
 some-command 2>&1
 ```
 
+Or:
+
+```bash
+some-command > myfile.txt 2>&1
+```
+
 Loops
 =====
 
