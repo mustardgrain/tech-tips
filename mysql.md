@@ -59,6 +59,18 @@ The following is a nice web-based formatter with several options:
 
 http://www.dpriver.com/pp/sqlformat.htm
 
+Logging Queries
+---------------
+
+To enable query logging, execute the following statements with `root` access:
+
+```mysql
+SET GLOBAL general_log = 'ON';
+SET GLOBAL general_log_file = '/tmp/mysql-general.log';
+```
+
+There is no need to restart the server.
+
 STRAIGHT_JOIN
 -------------
 
