@@ -18,6 +18,20 @@ Or:
 some-command > myfile.txt 2>&1
 ```
 
+Redirect stdout to stderr
+=========================
+
+Use the command as follows:
+
+```bash
+echo "Hello, World" 1>&2
+echo "Hello, World" >&2
+```
+
+The second form is short-hand for the first.
+
+See [here](http://www.kindle-maps.com/blog/how-to-echo-to-stderr.html) for more details.
+
 Loops
 =====
 
