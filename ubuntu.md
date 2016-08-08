@@ -8,6 +8,10 @@ Disable Un-auto-complete
 
 To disable the weird un-auto-complete in Ubuntu, comment out the lines about bash completion in `~/.bashrc`.
 
+***Or***
+
+In newer versions of Ubuntu, uncomment out the lines following `enable bash completion in interactive shells` in `/etc/bash.bashrc`.
+
 Password-less sudo
 ------------------
 
