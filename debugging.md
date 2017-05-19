@@ -1,1 +1,2 @@
-
+### Don't stick with your first assumption
+  When you first see the error message you may automatically have an idea of what you think is right. If after some time that assumption seems to lead you nowhere, make sure you can separate what you are looking for from that assumption. For instance you may think an error message you see relates to a specific line in your code in some way. However, if after spending some time focusing your efforts around that line, don't sink all your time into your first assumption.
