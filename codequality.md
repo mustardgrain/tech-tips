@@ -12,3 +12,6 @@
 
 ### Use unit tests
   Unit tests are a big help in making sure that code quality is maintained. While unit tests won't catch all problems, and will likely not catch "stylistic" problems with your code, when a code base has well maintained unit tests, it helps you to make sure that you didn't unexpectedly break anything when implementing new code, or attempting to fix old code.
+
+### Implement continuous integration
+  Implementing continuous integration is a good way of supplementing well maintained unit tests. At times developers may not remember to run their unit tests before pushing their code into the code base. Continuous integration software can help you ensure that everyones code passes your unit tests, whether or not the developer remembered it.
