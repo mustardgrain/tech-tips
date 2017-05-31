@@ -8,6 +8,16 @@
 ### Mind your written tone
   It can be easy for us to forget at times that it can be difficult to decipher tone through written messages. Try to keep in mind that we won't always know the state of mind of the person we are trying to communicate with. We may want to try to write words to soften our tone or even emoticons to ensure that what we say isn't taken harshly, when being harsh is not our intention.
 
+### Don't always settle for written communication
+  At times there will be misunderstandings in communicating with clients. At these times it can be beneficial to either arrange a meeting in person, or a phone meeting. It can be easy to ignore one email out of many emails that clients would receive, however speaking in person will make fixing things much easier.
+
+## Meeting with current and potential clients
+### Give place for casual conversation
+  While we of course will always have to talk about business and work, there are benefits to starting off a meeting with a casual conversation. There will be times where a client (non-tech members likely) may fear you will speak in terms they don't understand. They of course don't want to look confused, especially in a business meeting, and this type of anxiety can make a situation bad. Starting your meeting off with some informal conversation can help you make the client feel at ease, and set the tone for when you talk business. Additionally you may learn something about the client, which will help build your relationship with him, helping to give way to further business with them.
+
+### Meet with decision makers
+  It's important to know who it is exactly that you will be meeting with. If the person you are meeting with is basically just a messenger for the person who will be making the decisions, then it is posible that what you say will end up unintentionally changed when it gets back to the "people in charge". This can easily cause a misunderstanding. Of course meeting with decision makers can be difficult, especially in a large company, however this is something you should make a priority. While this is very difficult, you should not expect less. This of course doesn't mean that every time you meet it should be with someone that's in charge, however you shouldn't only be meeting with a messenger.
+
 ## Email Crafting Tips
 ### Write a meaningful subject line
   Write a subject line that describes the content of the message, keeping it succinct and descriptive, but not overly wordy.
