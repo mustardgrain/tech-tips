@@ -1,4 +1,4 @@
-Kafka supports custom partitions, and if you want/need to use them, this is a quick guide on writing custom partitions for Apache Kafka in Java.
+If you use Kafka you've likely heard of, or used, partitions. Kafka allows you to partition data, in other words split the work of processing messages sent to Kafka amongst different nodes, or processes. By default when you use partitions with Kafka the messages will essentially run a round robin against the different partitions that are running for the topic in the cluster, which is perfectly fine for most use cases, however Kafka supports custom partitions. One might choose to go the route of using custom partitions if they for instance have certain messages which would take longer to process, thus offloading those messages to specific partitions, or if maybe they are running their cluster in a way that certain nodes have specific services running on them, so that it would be more convenient for certain messages to run on the node that is running the service that will be used in further processing of the message. If you're planning to use custom partitioning this quick guide should help you.
 
 This guide will assume you already have Kafka and zookeeper up and running, for more on that see this guide (https://kafka.apache.org/quickstart). For this guide we'll also be setting up our project using Maven, to start a project with Maven see this guide (https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
 
@@ -95,3 +95,63 @@ In order to make sure that the partitioner is working as expected you can run th
 bin/kafka-run-class.sh kafka.tools.GetOffsetShell \
   --broker-list localhost:9092 --topic custom-partitioned-topic
 ```
+
+Another thing that you can do in order to check that the message is coming through the correct partition is to use the data in your Kafka consumer. For example:
+```
+package com.mustardgrain;
+
+import java.util.Arrays;
+import java.util.Properties;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+
+public class MessageConsumerRunner {
+
+    public static void main( String[] args ) {
+        MessageConsumer consumer = new MessageConsumer();
+        Thread thread = new Thread(consumer);
+        thread.start();
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException ie) {}
+    }
+
+    private static class MessageConsumer implements Runnable {
+
+        private final KafkaConsumer<String, String> consumer;
+        private final String topic;
+
+        public MessageConsumer() {
+            Properties prop = createConsumerConfig();
+            this.consumer = new KafkaConsumer(prop);
+            this.topic = "custom-partitioned-topic";
+            this.consumer.subscribe(Arrays.asList(this.topic));
+        }
+
+        private Properties createConsumerConfig() {
+            Properties props = new Properties();
+            props.put("bootstrap.servers", "localhost:9092");
+            props.put("group.id", "custom-partitions");
+            props.put("enable.auto.commit", "true");
+            props.put("auto.commit.interval.ms", "1000");
+            props.put("session.timeout.ms", "30000");
+            props.put("auto.offset.reset", "earliest");
+            props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+            props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+            return props;
+        }
+
+        public void run() {
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(100);
+                for (final ConsumerRecord record : records)
+                    System.out.println("Message is " + record.value() + ",Printed from Partition: " + record.partition());
+            }
+        }
+
+    }
+}
+```
+As you can see when you get a record out of Kafka you can get the id of the partition that the message came out of. 
