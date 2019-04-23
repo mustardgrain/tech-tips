@@ -12,11 +12,9 @@ One example is where you want to ensuring data locality for supple to run on the
 
 If you're planning to use custom partitioning this quick guide should help you.
 
-## Prerequisites
+## Prerequisites and Setup
 
 This guide will assume you already have Kafka and Zookeeper up and running, for more on that see [this guide](https://kafka.apache.org/quickstart). For this guide we'll also be setting up our project using [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
-
-## Setup
 
 First off, we'll create a topic with a partition from command line.
 
