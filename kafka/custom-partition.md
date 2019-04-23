@@ -21,10 +21,46 @@ This guide will assume you already have Kafka and Zookeeper up and running, for 
 First off, we'll create a topic with a partition from command line.
 
 ```
-bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic custom-partitioned-topic
+bin/kafka-topics.sh --create \
+                    --bootstrap-server localhost:9092 \
+                    --replication-factor 1 \
+                    --partitions 3 \
+                    --topic custom-partitioned-topic
 ```
 
-## Code
+## Coding the Custom Partitioner
+
+Now we code our partitioner. Our partitioner will take the values that we send from our producer and return the partition that that value would map to.
+
+```
+package com.mustardgrain.blog;
+
+import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.*;
+
+import java.util.List;
+import java.util.Map;
+
+public class CustomPartitioner implements Partitioner {
+
+    public void configure(Map<String, ?> configs) {
+    }
+
+    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
+        List<PartitionInfo> partitions = cluster.partitionsForTopic(topic);
+        int numPartitions = partitions.size();
+        int partitionValue = Integer.valueOf((String) value);
+        if (partitionValue > (numPartitions - 1))
+            return numPartitions - 1;
+        return partitionValue;
+    }
+    public void close() {}
+}
+```
+
+Now running the Producer in the same directory as the Partitioner will run messages alternately through partitions 0 through 2.
+
+## Coding the Producer to Use the Custom Partitioner
 
 Once we have that running we can start coding.
 
@@ -61,36 +97,6 @@ public class CustomProducer {
     }
 }
 ```
-
-Now we code our partitioner. Our partitioner will take the values that we send from our producer and return the partition that that value would map to.
-
-```
-package com.mustardgrain.blog;
-
-import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.*;
-
-import java.util.List;
-import java.util.Map;
-
-public class CustomPartitioner implements Partitioner {
-
-    public void configure(Map<String, ?> configs) {
-    }
-
-    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
-        List<PartitionInfo> partitions = cluster.partitionsForTopic(topic);
-        int numPartitions = partitions.size();
-        int partitionValue = Integer.valueOf((String) value);
-        if (partitionValue > (numPartitions - 1))
-            return numPartitions - 1;
-        return partitionValue;
-    }
-    public void close() {}
-}
-```
-
-Now running the Producer in the same directory as the Partitioner will run messages alternately through partitions 0 through 2.
 
 ## Validating Your Partition Logic
 
