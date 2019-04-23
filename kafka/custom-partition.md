@@ -92,13 +92,7 @@ public class CustomPartitioner implements Partitioner {
 
 Now running the Producer in the same directory as the Partitioner will run messages alternately through partitions 0 through 2.
 
-The quick and dirty of it is this. If you want to create your own custom partitioner the key parts are this. In the Producer make sure you have this line while setting up your properties.
-
-```
-props.put("partitioner.class", "class.name.of.the.CustomPartitioner");
-```
-
-In your code for your partitioner, make sure the class implements the Partitioner interface from the org.apache.kafka.common project. The partition method is where the magic happens. In the partition method you return the partition ID that you want to push this message to.
+## Validating Your Partition Logic
 
 You can get info on your partitions in your partitioner using:
 
@@ -183,3 +177,11 @@ As you can see when you get a record out of Kafka you can get the id of the part
 ## Conclusion
 
 Needs a conclusion...
+
+The quick and dirty of it is this. If you want to create your own custom partitioner the key parts are this. In the Producer make sure you have this line while setting up your properties:
+
+```
+props.put("partitioner.class", "class.name.of.the.CustomPartitioner");
+```
+
+In your code for your partitioner, make sure the class implements the `org.apache.kafka.common.Partitioner` interface. The `partition` method is where the magic happens. In the partition method you return the partition ID that you want to push this message to.
