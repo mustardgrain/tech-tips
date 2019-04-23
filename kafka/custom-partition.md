@@ -1,20 +1,33 @@
+## Overview
+
 If you've used Kafka, you've likely heard about _partitions_. Kafka allows you to partition the data in a given topic so that the processing work can be divided among multiple nodes. Thus partitioning of the data allows more data to be processed in parallel.
 
-Kafka's default logic will attempt to evenly distribute messages into the topic's partitions. This is achieved with what is essentially a round-robin algorithm, assigning each message to a different partition; the number of partitions is definied at the topic level.
+Kafka's default logic will attempt to evenly distribute messages into the topic's partitions. This is achieved with what is essentially a round-robin algorithm, assigning each message to a different partition. This default distribution works fine for most use cases.
 
-This default distribution works fine for most use cases. However, Kafka supports the ability to provide a custom partitioning algorithm.
+However, Kafka supports the ability to provide a _custom_ partitioning algorithm.
 
-One might choose to go the route of using custom partitions if they for instance have certain messages which would take longer to process, thus offloading those messages to specific partitions, or if maybe they are running their cluster in a way that certain nodes have specific services running on them, so that it would be more convenient for certain messages to run on the node that is running the service that will be used in further processing of the message. If you're planning to use custom partitioning this quick guide should help you.
+When might you want to use a _custom_ partitioning algorithm?
 
-This guide will assume you already have Kafka and zookeeper up and running, for more on that see this guide (https://kafka.apache.org/quickstart). For this guide we'll also be setting up our project using Maven, to start a project with Maven see this guide (https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
+One example is where you want to ensuring data locality for supple to run on the node that is running the service that will be used in further processing of the message. 
 
-First off we'll start a topic with a partition from command line.
+If you're planning to use custom partitioning this quick guide should help you.
+
+## Prerequisites
+
+This guide will assume you already have Kafka and Zookeeper up and running, for more on that see [this guide](https://kafka.apache.org/quickstart). For this guide we'll also be setting up our project using [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
+
+## Setup
+
+First off, we'll create a topic with a partition from command line.
 
 ```
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic custom-partitioned-topic
 ```
 
-Once we have that running we can start coding. 
+## Code
+
+Once we have that running we can start coding.
+
 This is a super simple Kafka Producer that will just send out a message to our topic values 0, 1, and 2.
 
 ```
@@ -82,7 +95,7 @@ Now running the Producer in the same directory as the Partitioner will run messa
 The quick and dirty of it is this. If you want to create your own custom partitioner the key parts are this. In the Producer make sure you have this line while setting up your properties.
 
 ```
-        props.put("partitioner.class", "package.of.the.CustomPartitioner");
+props.put("partitioner.class", "class.name.of.the.CustomPartitioner");
 ```
 
 In your code for your partitioner, make sure the class implements the Partitioner interface from the org.apache.kafka.common project. The partition method is where the magic happens. In the partition method you return the partition ID that you want to push this message to.
@@ -93,9 +106,9 @@ You can get info on your partitions in your partitioner using:
 List<PartitionInfo> partitions = cluster.partitionsForTopic(topic);
 ```
 
-You can use the information from the PartitionInfo (https://kafka.apache.org/11/javadoc/org/apache/kafka/common/PartitionInfo.html) class in your partitioning, for instance getting the number of partitions.
+You can use the information from the [PartitionInfo](https://kafka.apache.org/11/javadoc/org/apache/kafka/common/PartitionInfo.html) class in your partitioning, for instance getting the number of partitions.
 
-In order to make sure that the partitioner is working as expected you can run the following from the command line in your kafka bin directory:
+In order to make sure that the partitioner is working as expected you can run the following from the command line in your Kafka `bin` directory:
 
 ```
 bin/kafka-run-class.sh kafka.tools.GetOffsetShell \
@@ -103,6 +116,7 @@ bin/kafka-run-class.sh kafka.tools.GetOffsetShell \
 ```
 
 Another thing that you can do in order to check that the message is coming through the correct partition is to use the data in your Kafka consumer. For example:
+
 ```
 package com.mustardgrain.blog;
 
@@ -115,13 +129,15 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 public class MessageConsumerRunner {
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         MessageConsumer consumer = new MessageConsumer();
         Thread thread = new Thread(consumer);
         thread.start();
+        
         try {
             Thread.sleep(100000);
-        } catch (InterruptedException ie) {}
+        } catch (InterruptedException ie) {
+        }
     }
 
     private static class MessageConsumer implements Runnable {
@@ -133,7 +149,7 @@ public class MessageConsumerRunner {
             Properties prop = createConsumerConfig();
             this.consumer = new KafkaConsumer(prop);
             this.topic = "custom-partitioned-topic";
-            this.consumer.subscribe(Arrays.asList(this.topic));
+            this.consumer.subscribe(Collections.singletonList(this.topic));
         }
 
         private Properties createConsumerConfig() {
@@ -158,6 +174,12 @@ public class MessageConsumerRunner {
         }
 
     }
+
 }
 ```
+
 As you can see when you get a record out of Kafka you can get the id of the partition that the message came out of. 
+
+## Conclusion
+
+Needs a conclusion...
