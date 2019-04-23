@@ -1,4 +1,10 @@
-If you use Kafka you've likely heard of, or used, partitions. Kafka allows you to partition data, in other words split the work of processing messages sent to Kafka amongst different nodes, or processes. By default when you use partitions with Kafka the messages will essentially run a round robin against the different partitions that are running for the topic in the cluster, which is perfectly fine for most use cases, however Kafka supports custom partitions. One might choose to go the route of using custom partitions if they for instance have certain messages which would take longer to process, thus offloading those messages to specific partitions, or if maybe they are running their cluster in a way that certain nodes have specific services running on them, so that it would be more convenient for certain messages to run on the node that is running the service that will be used in further processing of the message. If you're planning to use custom partitioning this quick guide should help you.
+If you've used Kafka, you've likely heard about _partitions_. Kafka allows you to partition the data in a given topic so that the processing work can be divided among multiple nodes. Thus partitioning of the data allows more data to be processed in parallel.
+
+Kafka's default logic will attempt to evenly distribute messages into the topic's partitions. This is achieved with what is essentially a round-robin algorithm, assigning each message to a different partition; the number of partitions is definied at the topic level.
+
+This default distribution works fine for most use cases. However, Kafka supports the ability to provide a custom partitioning algorithm.
+
+One might choose to go the route of using custom partitions if they for instance have certain messages which would take longer to process, thus offloading those messages to specific partitions, or if maybe they are running their cluster in a way that certain nodes have specific services running on them, so that it would be more convenient for certain messages to run on the node that is running the service that will be used in further processing of the message. If you're planning to use custom partitioning this quick guide should help you.
 
 This guide will assume you already have Kafka and zookeeper up and running, for more on that see this guide (https://kafka.apache.org/quickstart). For this guide we'll also be setting up our project using Maven, to start a project with Maven see this guide (https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
 
@@ -12,7 +18,7 @@ Once we have that running we can start coding.
 This is a super simple Kafka Producer that will just send out a message to our topic values 0, 1, and 2.
 
 ```
-package com.mustardgrain;
+package com.mustardgrain.blog;
 
 import java.util.*;
 import org.apache.kafka.clients.producer.*;
@@ -27,7 +33,7 @@ public class CustomProducer {
         props.put("bootstrap.servers", "localhost:9092");
         props.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("partitioner.class", "com.mustardgrain.CustomPartitioner");
+        props.put("partitioner.class", "com.mustardgrain.blog.CustomPartitioner");
 
         Producer<String, String> producer = new KafkaProducer
                 <String, String>(props);
@@ -46,7 +52,7 @@ public class CustomProducer {
 Now we code our partitioner. Our partitioner will take the values that we send from our producer and return the partition that that value would map to.
 
 ```
-package com.mustardgrain;
+package com.mustardgrain.blog;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.*;
@@ -98,7 +104,7 @@ bin/kafka-run-class.sh kafka.tools.GetOffsetShell \
 
 Another thing that you can do in order to check that the message is coming through the correct partition is to use the data in your Kafka consumer. For example:
 ```
-package com.mustardgrain;
+package com.mustardgrain.blog;
 
 import java.util.Arrays;
 import java.util.Properties;
