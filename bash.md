@@ -1,3 +1,42 @@
+Upgrading/Using `bash` on macOS
+============
+
+The word on the street is that macOS Catalina will switch to using `zsh`
+instead of `bash` as the default shell. If you use `bash` as your default
+shell and plan to upgrade to Catalina, this change will probably break
+some things for you in weird ways. Regardless of that, though, the version
+of `bash` that ships with macOS is very old and should probably be updated
+anyway.
+
+One way to get a current version of `bash` on macOS is to install via 
+Homebrew:
+
+```
+brew install bash
+```
+
+However you prefer to get `bash` is up to you. However, the next two steps
+are the same regardless -
+
+Now, to _use_ this version of `bash` (or any other shell, for that matter),
+you need to add the path of the shell to the list of "allowed" shells:
+
+```
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+```
+
+Next, you need to **ch**ange your **sh**ell to use your version of `bash`:
+
+```
+chsh -s /usr/local/bin/bash
+```
+
+References:
+
+* https://support.apple.com/en-us/HT208050
+* https://linux.die.net/man/5/shells
+* https://clubmate.fi/upgrade-to-bash-4-in-mac-os-x/
+
 Cheat Sheets
 ============
 
